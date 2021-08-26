@@ -1,0 +1,9 @@
+.container {
+    padding: 5px;
+}
+
+.usersContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
