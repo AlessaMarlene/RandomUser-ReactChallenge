@@ -1,18 +1,17 @@
 import React from "react";
-import UserCard from "../UserCard/UserCard";
-import { RandomUsersContext } from "../../Context/Context";
 import { Link } from "react-router-dom";
-import "./UsersGrid.css";
+import UserCard from "./UserCard";
+import { RandomUsersContext } from "../../Context/Context";
+import HomeContainer from "../Utils/HomeContainer";
+import Container from "../Utils/Container";
 
 const UsersGrid = () => {
     const { users, showMoreUsers } = React.useContext(RandomUsersContext);
     const bottomPage = React.useRef();
 
     React.useEffect(() => {
-        console.log("User Grid - React.useEffect callback");
         const observer = new IntersectionObserver(
             (intersections) => {
-                console.log("User Grid - IntersectionObserver callback");
                 if (intersections[0].isIntersecting) showMoreUsers();
             },
             { threshold: 1 }
@@ -22,17 +21,17 @@ const UsersGrid = () => {
     }, [showMoreUsers]);
 
     return (
-        <div className="container">
+        <HomeContainer>
             <h1>Users Grid</h1>
-            <div className="usersContainer">
+            <Container wrap="wrap">
                 {users.map((user, index) => (
                     <Link key={index} to={`/users/${user.email}`}>
                         <UserCard userInfo={user} />
                     </Link>
                 ))}
-            </div>
+            </Container>
             <div ref={bottomPage}></div>
-        </div>
+        </HomeContainer>
     );
 };
 
