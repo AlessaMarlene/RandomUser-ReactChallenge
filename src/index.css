@@ -30,3 +30,8 @@ button {
     width: 15em;
     margin: auto;
 }
+
+button:hover {
+    background-color: #008b8b;
+    color: white;
+}
